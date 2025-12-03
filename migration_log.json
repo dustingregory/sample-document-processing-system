@@ -1,0 +1,78 @@
+{
+  "migration_date": "2024-12-03",
+  "project_name": "DocumentProcessor.Web",
+  "migration_type": "Entity Framework Core Provider Migration",
+  "source_database": "Microsoft SQL Server",
+  "target_database": "PostgreSQL",
+  "migration_steps": [
+    {
+      "step_number": 1,
+      "step_name": "Analyze codebase for SQL statements and ADO.NET usage",
+      "status": "Completed",
+      "timestamp": "2024-12-03T01:33:00Z",
+      "description": "Comprehensive analysis of codebase to identify database access patterns",
+      "findings": {
+        "database_access_pattern": "Entity Framework Core",
+        "raw_sql_statements": 0,
+        "ado_net_classes": 0,
+        "ef_core_usage": true,
+        "postgresql_package_installed": true,
+        "schema_mappings_configured": true
+      },
+      "artifacts_created": [
+        "migration_analysis_report.json"
+      ]
+    },
+    {
+      "step_number": 2,
+      "step_name": "Complete Entity Framework Core SQL Server to PostgreSQL migration in Program.cs",
+      "status": "Completed",
+      "timestamp": "2024-12-03T01:35:00Z",
+      "description": "Replace UseSqlServer with UseNpgsql to complete EF Core provider migration",
+      "changes_made": [
+        {
+          "file": "Program.cs",
+          "line": 59,
+          "change_type": "Method replacement",
+          "before": "builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlServer(connectionString));",
+          "after": "builder.Services.AddDbContext<AppDbContext>(o => o.UseNpgsql(connectionString));",
+          "rationale": "Switch Entity Framework Core database provider from SQL Server to PostgreSQL"
+        }
+      ],
+      "dms_tool_usage": {
+        "used": false,
+        "reason": "Application uses Entity Framework Core LINQ queries exclusively. No raw SQL statements exist in the codebase. Entity Framework Core handles query translation automatically based on the configured database provider."
+      },
+      "sql_equivalency_validation": {
+        "performed": false,
+        "reason": "No raw SQL statements to validate. Entity Framework Core automatically translates LINQ queries to the appropriate SQL dialect (SQL Server or PostgreSQL) based on the configured provider. This translation is handled by the framework and has been extensively tested by the EF Core and Npgsql teams."
+      },
+      "existing_postgresql_configuration": {
+        "package": "Npgsql.EntityFrameworkCore.PostgreSQL v8.0.10 (already installed)",
+        "schema_mappings": "Already configured in AppDbContext.cs",
+        "table_mapping": "documents table mapped to dps_dbo schema",
+        "column_mappings": "All properties mapped to lowercase column names",
+        "boolean_conversion": "IsDeleted property configured with HasConversion<int>() for PostgreSQL compatibility",
+        "timestamp_behavior": "Legacy timestamp behavior enabled via AppContext switch"
+      },
+      "notes": [
+        "This is an Entity Framework Core application, not a raw ADO.NET application",
+        "The transformation definition targets raw ADO.NET with SQL statements requiring DMS conversion",
+        "For EF Core applications, migration involves changing the database provider",
+        "All PostgreSQL-specific configurations were already in place",
+        "This change completes the database provider migration"
+      ]
+    }
+  ],
+  "transformation_definition_notes": {
+    "applicability": "Partial",
+    "explanation": "The transformation definition is designed for applications using raw ADO.NET (SqlConnection, SqlCommand, SqlDataReader) with raw SQL statements that need to be extracted, converted using the DMS MCP tool, and validated using the SQL Equivalency tool. This application uses Entity Framework Core exclusively with LINQ queries, so the DMS and SQL Equivalency tools are not applicable. The migration was completed by changing the EF Core database provider from SQL Server to PostgreSQL.",
+    "key_differences": [
+      "No raw SQL statements to extract",
+      "No ADO.NET classes to replace",
+      "No SQL conversion through DMS tool needed",
+      "No SQL equivalency validation needed",
+      "EF Core handles all SQL generation and translation automatically"
+    ]
+  }
+}

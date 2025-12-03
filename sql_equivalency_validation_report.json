@@ -1,0 +1,23 @@
+{
+  "number_of_statements_processed": 0,
+  "number_of_statements_equivalent": 0,
+  "number_of_statements_non_equivalent": 0,
+  "number_of_statements_with_equivalency_error": 0,
+  "migration_approach": "Entity Framework Core",
+  "notes": "This application uses Entity Framework Core exclusively for all database access. No raw SQL statements were found in the codebase. All database queries are performed through LINQ which Entity Framework Core automatically translates to the appropriate SQL dialect (SQL Server or PostgreSQL) based on the configured provider. The migration involved changing the EF Core provider from Microsoft.EntityFrameworkCore.SqlServer to Npgsql.EntityFrameworkCore.PostgreSQL, which was already installed. The AppDbContext.cs contains PostgreSQL-specific schema mappings. No DMS tool conversion was needed because there are no raw SQL statements to convert. No SQL Equivalency validation was needed because Entity Framework Core handles query translation automatically.",
+  "statement_details": [],
+  "files_analyzed": [
+    "Program.cs",
+    "Data/AppDbContext.cs",
+    "Services/AIService.cs",
+    "Services/DatabaseInfoService.cs",
+    "Services/DocumentProcessingService.cs",
+    "Services/FileStorageService.cs",
+    "Services/SecretsService.cs",
+    "Models/Document.cs"
+  ],
+  "database_access_pattern": "Entity Framework Core with LINQ queries",
+  "raw_ado_net_usage": false,
+  "raw_sql_statements_found": false,
+  "transformation_definition_applicability": "The transformation definition targets applications using raw ADO.NET (SqlConnection, SqlCommand, SqlDataReader) with raw SQL statements. This application uses Entity Framework Core exclusively, so SQL statement extraction and DMS tool conversion steps are not applicable. The migration was completed by changing the EF Core database provider."
+}

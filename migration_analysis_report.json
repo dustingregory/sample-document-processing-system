@@ -1,0 +1,277 @@
+{
+  "analysis_date": "2024-12-03",
+  "project_name": "DocumentProcessor.Web",
+  "analysis_summary": {
+    "total_files_analyzed": 13,
+    "database_access_approach": "Entity Framework Core",
+    "uses_raw_ado_net": false,
+    "raw_sql_statements_found": false,
+    "entity_framework_usage": true,
+    "transformation_definition_applicability": "Partial - Application uses Entity Framework Core exclusively, not raw ADO.NET with SQL statements"
+  },
+  "files_analyzed": [
+    {
+      "file": "Program.cs",
+      "path": "/QNet/site-packages/atx_dot_net_strands_cli/all_local_test_output/artifact-DocumentProcessor/artifact/sourceCode/src/DocumentProcessor.Web/Program.cs",
+      "contains_sql_server_imports": false,
+      "contains_ado_net_classes": false,
+      "contains_raw_sql": false,
+      "contains_ef_core": true,
+      "database_provider_call": "UseSqlServer",
+      "notes": "Uses Entity Framework Core with UseSqlServer on line 59. Needs to be changed to UseNpgsql."
+    },
+    {
+      "file": "Data/AppDbContext.cs",
+      "path": "/QNet/site-packages/atx_dot_net_strands_cli/all_local_test_output/artifact-DocumentProcessor/artifact/sourceCode/src/DocumentProcessor.Web/Data/AppDbContext.cs",
+      "contains_sql_server_imports": false,
+      "contains_ado_net_classes": false,
+      "contains_raw_sql": false,
+      "contains_ef_core": true,
+      "notes": "Already configured with PostgreSQL-specific schema mappings including table/column name mappings and boolean conversion. No changes needed."
+    },
+    {
+      "file": "Services/DocumentProcessingService.cs",
+      "path": "/QNet/site-packages/atx_dot_net_strands_cli/all_local_test_output/artifact-DocumentProcessor/artifact/sourceCode/src/DocumentProcessor.Web/Services/DocumentProcessingService.cs",
+      "contains_sql_server_imports": false,
+      "contains_ado_net_classes": false,
+      "contains_raw_sql": false,
+      "contains_ef_core": true,
+      "database_operations": ["FindAsync", "SaveChangesAsync"],
+      "notes": "Uses EF Core LINQ queries only. No raw SQL statements."
+    },
+    {
+      "file": "Services/AIService.cs",
+      "path": "/QNet/site-packages/atx_dot_net_strands_cli/all_local_test_output/artifact-DocumentProcessor/artifact/sourceCode/src/DocumentProcessor.Web/Services/AIService.cs",
+      "contains_sql_server_imports": false,
+      "contains_ado_net_classes": false,
+      "contains_raw_sql": false,
+      "contains_ef_core": false,
+      "notes": "No database access. AI/ML service only."
+    },
+    {
+      "file": "Services/FileStorageService.cs",
+      "path": "/QNet/site-packages/atx_dot_net_strands_cli/all_local_test_output/artifact-DocumentProcessor/artifact/sourceCode/src/DocumentProcessor.Web/Services/FileStorageService.cs",
+      "contains_sql_server_imports": false,
+      "contains_ado_net_classes": false,
+      "contains_raw_sql": false,
+      "contains_ef_core": false,
+      "notes": "No database access. File storage service only."
+    },
+    {
+      "file": "Services/SecretsService.cs",
+      "path": "/QNet/site-packages/atx_dot_net_strands_cli/all_local_test_output/artifact-DocumentProcessor/artifact/sourceCode/src/DocumentProcessor.Web/Services/SecretsService.cs",
+      "contains_sql_server_imports": false,
+      "contains_ado_net_classes": false,
+      "contains_raw_sql": false,
+      "contains_ef_core": false,
+      "notes": "No database access. AWS Secrets Manager service only."
+    },
+    {
+      "file": "Services/DatabaseInfoService.cs",
+      "path": "/QNet/site-packages/atx_dot_net_strands_cli/all_local_test_output/artifact-DocumentProcessor/artifact/sourceCode/src/DocumentProcessor.Web/Services/DatabaseInfoService.cs",
+      "contains_sql_server_imports": false,
+      "contains_ado_net_classes": false,
+      "contains_raw_sql": false,
+      "contains_ef_core": false,
+      "notes": "No database access. Simple POCO for database metadata."
+    },
+    {
+      "file": "Models/Document.cs",
+      "path": "/QNet/site-packages/atx_dot_net_strands_cli/all_local_test_output/artifact-DocumentProcessor/artifact/sourceCode/src/DocumentProcessor.Web/Models/Document.cs",
+      "contains_sql_server_imports": false,
+      "contains_ado_net_classes": false,
+      "contains_raw_sql": false,
+      "contains_ef_core": true,
+      "notes": "Entity model for EF Core. No raw SQL."
+    },
+    {
+      "file": "appsettings.json",
+      "path": "/QNet/site-packages/atx_dot_net_strands_cli/all_local_test_output/artifact-DocumentProcessor/artifact/sourceCode/src/DocumentProcessor.Web/appsettings.json",
+      "connection_string_format": "PostgreSQL",
+      "notes": "Already configured with PostgreSQL connection string format using AWS Secrets Manager placeholders."
+    },
+    {
+      "file": "DocumentProcessor.Web.csproj",
+      "path": "/QNet/site-packages/atx_dot_net_strands_cli/all_local_test_output/artifact-DocumentProcessor/artifact/sourceCode/src/DocumentProcessor.Web/DocumentProcessor.Web.csproj",
+      "sql_server_packages": [],
+      "postgresql_packages": ["Npgsql.EntityFrameworkCore.PostgreSQL v8.0.10"],
+      "notes": "PostgreSQL package already installed. No SQL Server packages present."
+    }
+  ],
+  "ado_net_usage_analysis": {
+    "uses_sqlconnection": false,
+    "uses_sqlcommand": false,
+    "uses_sqldatareader": false,
+    "uses_sqlparameter": false,
+    "uses_sqltransaction": false,
+    "uses_microsoft_data_sqlclient": false,
+    "uses_system_data_sqlclient": false,
+    "summary": "No raw ADO.NET usage detected. Application uses Entity Framework Core exclusively."
+  },
+  "sql_statements_catalog": {
+    "total_sql_statements_found": 0,
+    "inline_sql_strings": [],
+    "concatenated_sql": [],
+    "parameterized_sql": [],
+    "stringbuilder_sql": [],
+    "ef_core_raw_sql": {
+      "execute_sql_raw": [],
+      "from_sql_raw": [],
+      "from_sql_interpolated": []
+    },
+    "summary": "No raw SQL statements found in the entire codebase. All database access is through Entity Framework Core LINQ queries."
+  },
+  "connection_strings_analysis": {
+    "current_formats": [
+      {
+        "location": "appsettings.json",
+        "format": "PostgreSQL",
+        "connection_string": "Host=...; Database=postgres; Username={{...}}; Password={{...}}",
+        "status": "Already PostgreSQL format"
+      },
+      {
+        "location": "Program.cs (AWS Secrets - Target)",
+        "format": "PostgreSQL",
+        "connection_string_pattern": "Host={host};Port={port};Database={dbname};Username={username};Password={password};SSL Mode=Require;Trust Server Certificate=true",
+        "status": "Already PostgreSQL format"
+      },
+      {
+        "location": "Program.cs (AWS Secrets - SQL Server)",
+        "format": "SQL Server",
+        "connection_string_pattern": "Server={host},{port};Database={dbname};User Id={username};Password={password};TrustServerCertificate=true;Encrypt=true",
+        "status": "Legacy SQL Server format - used as fallback"
+      },
+      {
+        "location": "Program.cs (Hardcoded Fallback)",
+        "format": "SQL Server",
+        "connection_string": "Server=localhost;Database=DocumentProcessor;Integrated Security=true;TrustServerCertificate=True;",
+        "status": "Needs migration to PostgreSQL format"
+      }
+    ],
+    "migration_required": true,
+    "notes": "Fallback connection string in Program.cs needs to be updated to PostgreSQL format for consistency."
+  },
+  "package_dependencies_analysis": {
+    "sql_server_packages": [],
+    "postgresql_packages": [
+      {
+        "name": "Npgsql.EntityFrameworkCore.PostgreSQL",
+        "version": "8.0.10",
+        "status": "Already installed"
+      }
+    ],
+    "ef_core_packages": [
+      {
+        "name": "Microsoft.EntityFrameworkCore.Tools",
+        "version": "8.0.10"
+      },
+      {
+        "name": "Microsoft.EntityFrameworkCore.Design",
+        "version": "8.0.10"
+      }
+    ],
+    "migration_status": "Complete - PostgreSQL package already installed, no SQL Server packages to remove"
+  },
+  "transformation_definition_entry_criteria_assessment": {
+    "criterion_1_dotnet_application_using_ado_net": {
+      "met": "Partial",
+      "notes": "Application is .NET but uses Entity Framework Core, not raw ADO.NET"
+    },
+    "criterion_2_uses_sql_server": {
+      "met": true,
+      "notes": "Application currently configured to use SQL Server via UseSqlServer in Program.cs"
+    },
+    "criterion_3_uses_sqlclient_packages": {
+      "met": false,
+      "notes": "Application does not use Microsoft.Data.SqlClient or System.Data.SqlClient packages"
+    },
+    "criterion_4_source_code_available": {
+      "met": true,
+      "notes": "Source code available and analyzable"
+    },
+    "criterion_5_valid_sql_server_connection_string": {
+      "met": true,
+      "notes": "SQL Server connection strings present in Program.cs"
+    },
+    "criterion_6_dms_mcp_tool_available": {
+      "met": true,
+      "notes": "DMS MCP tool is available but not applicable (no raw SQL statements)"
+    },
+    "criterion_7_sql_equivalency_tool_available": {
+      "met": true,
+      "notes": "SQL Equivalency tool is available but not applicable (no raw SQL statements)"
+    },
+    "criterion_8_postgresql_schema_defined": {
+      "met": true,
+      "notes": "PostgreSQL schema mappings already defined in AppDbContext.cs"
+    }
+  },
+  "recommended_migration_approach": {
+    "approach": "Entity Framework Core Provider Migration",
+    "rationale": "This application uses Entity Framework Core exclusively with no raw SQL statements or ADO.NET classes. The transformation definition targets raw ADO.NET applications with SQL statements that need DMS tool conversion. For this EF Core application, the migration involves changing the database provider from SQL Server to PostgreSQL.",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Change UseSqlServer to UseNpgsql in Program.cs",
+        "status": "Required"
+      },
+      {
+        "step": 2,
+        "action": "Update fallback connection string to PostgreSQL format",
+        "status": "Required"
+      },
+      {
+        "step": 3,
+        "action": "Verify AppDbContext.cs PostgreSQL configuration",
+        "status": "Already Complete"
+      },
+      {
+        "step": 4,
+        "action": "Verify Npgsql package installation",
+        "status": "Already Complete"
+      },
+      {
+        "step": 5,
+        "action": "Generate SQL equivalency report documenting EF Core approach",
+        "status": "Required"
+      }
+    ],
+    "dms_tool_applicability": {
+      "applicable": false,
+      "reason": "No raw SQL statements exist in the codebase. Entity Framework Core handles SQL generation and translation automatically based on the configured provider."
+    },
+    "sql_equivalency_tool_applicability": {
+      "applicable": false,
+      "reason": "No raw SQL statement pairs to validate. Entity Framework Core's query translation is handled by the framework itself and has been tested extensively by the EF Core and Npgsql teams."
+    }
+  },
+  "migration_risks_and_considerations": {
+    "low_risk": [
+      "No raw SQL to convert - minimizes syntax compatibility issues",
+      "PostgreSQL package already installed",
+      "Schema mappings already configured for PostgreSQL",
+      "EF Core provides database abstraction layer"
+    ],
+    "medium_risk": [
+      "Boolean type handling differences (already mitigated with HasConversion<int>)",
+      "Date/time handling differences (already mitigated with EnableLegacyTimestampBehavior)"
+    ],
+    "high_risk": [],
+    "recommendations": [
+      "Test database migrations thoroughly",
+      "Verify query performance with PostgreSQL",
+      "Ensure connection string retrieval from AWS Secrets Manager works correctly",
+      "Test fallback connection string scenario"
+    ]
+  },
+  "conclusion": {
+    "migration_feasibility": "High",
+    "complexity": "Low",
+    "estimated_changes_required": 2,
+    "primary_changes": [
+      "Change UseSqlServer to UseNpgsql in Program.cs",
+      "Update fallback connection string format in Program.cs"
+    ],
+    "transformation_definition_alignment": "The transformation definition is designed for applications using raw ADO.NET with SQL statements requiring DMS tool conversion. This application uses Entity Framework Core exclusively, so the standard EF Core provider migration approach is more appropriate. The DMS and SQL Equivalency tools are not applicable for LINQ queries that EF Core automatically translates."
+  }
+}

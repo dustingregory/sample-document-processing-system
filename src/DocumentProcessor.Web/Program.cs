@@ -52,11 +52,11 @@ catch (Exception ex)
 {
     Console.WriteLine($"Warning: Could not load connection string from AWS Secrets Manager: {ex.Message}");
     Console.WriteLine("Falling back to appsettings.json connection string");
-    connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? "Server=localhost;Database=DocumentProcessor;Integrated Security=true;TrustServerCertificate=True;";
-    dbInfo.DatabaseType = "SQL Server (Local)"; dbInfo.SecretName = "appsettings.json"; dbInfo.HostAddress = "localhost";
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? "Host=localhost;Port=5432;Database=DocumentProcessor;Username=postgres;Password=postgres";
+    dbInfo.DatabaseType = "PostgreSQL (Local)"; dbInfo.SecretName = "appsettings.json"; dbInfo.HostAddress = "localhost:5432";
 }
 
-builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlServer(connectionString));
+builder.Services.AddDbContext<AppDbContext>(o => o.UseNpgsql(connectionString));
 builder.Services.AddSingleton(dbInfo);
 builder.Services.AddScoped<FileStorageService>();
 builder.Services.AddScoped<AIService>();
